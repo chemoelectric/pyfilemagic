@@ -29,7 +29,7 @@
  * of Christos Zoulas's magic.h, which is part of the libmagic
  * C library. */
 
-%module magic
+%module pyfilemagic
 
 %{
 #include <magic.h>
