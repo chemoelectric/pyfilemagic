@@ -1,0 +1,13 @@
+
+An interface to libmagic, made with SWIG so it will work with Python3.
+----------------------------------------------------------------------
+
+
+To install, say something like:
+
+    swig -python pyfilemagic.i
+    python setup.py build_ext -L/where/libmagic.so/is -I/where/magic.h/is
+    python setup.py install --prefix=/where/to/put
+
+
+For the benefit of Gentoo users, an ebuild is included.
