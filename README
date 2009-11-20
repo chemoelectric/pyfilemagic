@@ -1,13 +1,20 @@
 
-An interface to libmagic, made with SWIG so it will work with Python3.
-----------------------------------------------------------------------
+An interface to libmagic, made with Cython so it will work with Python3
+-----------------------------------------------------------------------
 
+(At the time of this writing, Gentoo's sys-apps/file did not support
+Python 3.)
 
 To install, say something like:
 
-    swig -python pyfilemagic.i
     python setup.py build_ext -L/where/libmagic.so/is -I/where/magic.h/is
     python setup.py install --prefix=/where/to/put
+
+To install without Cython (using the pre-Cythoned C source file
+pyfilemagic-no_cython.c):
+
+  python setup-no_cython.py build_ext [--library-dirs=/where_to_look]
+  python setup.py install [--prefix=/where_to_put]
 
 
 For the benefit of Gentoo users, an ebuild is included.

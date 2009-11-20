@@ -29,16 +29,18 @@
  */
 '''
 
-from distutils.core import setup, Extension
-
-pyfilemagic_module = Extension('_pyfilemagic',
-                               sources = ['pyfilemagic_wrap.c'],
-                               libraries = ['magic'],
-                               )
+from distutils.core import setup
+from distutils.extension import Extension
+from Cython.Distutils import build_ext
 
 setup (name = 'pyfilemagic',
-       version = '1.0',
-       description = 'SWIG-made interface to libmagic',
-       ext_modules = [pyfilemagic_module],
-       py_modules = ['pyfilemagic'],
+       version = '1.1',
+       description = 'An interface to libmagic, written in Cython',
+       cmdclass = {'build_ext': build_ext},
+       ext_modules = [
+        Extension('pyfilemagic',
+                  sources = ['pyfilemagic.pyx', 'pyfilemagic.pxd'],
+                  libraries = ['magic'],
+                  )
+        ],
        )
