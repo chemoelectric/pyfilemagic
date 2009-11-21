@@ -67,6 +67,8 @@ cdef class magic_cookie:
     def load_magic(self, magic_list = None):
         cdef char *ml
         cdef int error
+        if magic_list != None and not isinstance(magic_list, bytes):
+            magic_list = magic_list.encode()
         if magic_list == None:
             ml = NULL
         else:
@@ -75,9 +77,11 @@ cdef class magic_cookie:
         if error != 0:
             raise OSError(magic_error(self.cookie))
 
-    def examine_file(self, char *file_name):
-        cdef char *result = <char *> magic_file(self.cookie, file_name)
+    def examine_file(self, file_name):
+        if not isinstance(file_name, bytes):
+            file_name = file_name.encode()
+        cdef char *result = <char *> magic_file(self.cookie, <char *> file_name)
         if result == NULL:
             raise OSError(magic_error(self.cookie))
         s = result
-        return s
+        return s.decode()
