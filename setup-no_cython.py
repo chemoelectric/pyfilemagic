@@ -31,12 +31,10 @@
 
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Distutils import build_ext
 
 setup (name = 'pyfilemagic',
        version = '1.1',
        description = 'An interface to libmagic, written in Cython',
-       cmdclass = {'build_ext': build_ext},
        ext_modules = [
         Extension('pyfilemagic',
                   sources = ['pyfilemagic-no_cython.c'],
